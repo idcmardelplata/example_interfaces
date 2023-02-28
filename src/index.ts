@@ -1,4 +1,10 @@
-class Customer {
+interface Person {
+  /* name: string; */
+  /* age: number; */
+  store(): boolean; 
+};
+
+class Customer implements Person {
   name: string;
   age: number;
 
@@ -13,7 +19,7 @@ class Customer {
   }
 }
 
-class Seller {
+class Seller implements Person {
    name: string;
    age: number;
 
@@ -27,3 +33,34 @@ class Seller {
     return true;
   }
 }
+
+class Usuario implements Person {
+  constructor() {
+  }
+
+  store(): boolean {
+    console.log("salvado");
+    return true;
+  }
+}
+
+class DB implements Person {
+  store() : boolean {
+    console.log("salvado en la base de datos");
+    return true;
+  }
+}
+
+
+function storeInDB(user: Person) {
+  user.store();
+}
+
+
+let customer = new Customer("carlos", 23);
+let seller = new Seller("ruben", 42);
+let usuario = new Usuario();
+
+storeInDB(customer);
+storeInDB(seller);
+storeInDB(usuario);
